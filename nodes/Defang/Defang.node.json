@@ -1,0 +1,16 @@
+{
+	"node": "n8n-nodes-defang.defang",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": [
+		"Utility"
+	],
+	"resources": {
+		"credentialDocumentation": [],
+		"primaryDocumentation": [
+			{
+				"url": "https://github.com/pemontto/n8n-nodes-defang"
+			}
+		]
+	}
+}

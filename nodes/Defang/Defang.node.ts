@@ -1,15 +1,13 @@
-import { defang, refang } from 'fanger';
-
 import {
 	IExecuteFunctions,
-} from 'n8n-core';
-
-import {
 	INodeExecutionData,
 	INodeType,
 	INodeTypeDescription,
+	NodeConnectionType,
 	NodeOperationError,
 } from 'n8n-workflow';
+
+import { defang, refang } from 'fanger';
 
 import { set } from 'lodash';
 
@@ -24,10 +22,9 @@ export class Defang implements INodeType {
 		description: 'Defang and Refang IoCs',
 		defaults: {
 			name: 'Defang',
-			color: '#f45e43',
 		},
-		inputs: ['main'],
-		outputs: ['main'],
+		inputs: [NodeConnectionType.Main],
+		outputs: [NodeConnectionType.Main],
 		credentials: [],
 		properties: [
 			{
@@ -55,9 +52,7 @@ export class Defang implements INodeType {
 				description: 'Value that should be defanged',
 				displayOptions: {
 					show: {
-						operation: [
-							'defang',
-						],
+						operation: ['defang'],
 					},
 				},
 			},
@@ -69,9 +64,7 @@ export class Defang implements INodeType {
 				description: 'Value that should be refanged',
 				displayOptions: {
 					show: {
-						operation: [
-							'refang',
-						],
+						operation: ['refang'],
 					},
 				},
 			},
@@ -80,7 +73,8 @@ export class Defang implements INodeType {
 				name: 'name',
 				type: 'string',
 				default: 'data',
-				description: 'Name of the property to write output to. Supports dot-notation. Example: "data.person[0].name"',
+				description:
+					'Name of the property to write output to. Supports dot-notation. Example: "data.person[0].name"',
 			},
 		],
 	};
@@ -94,7 +88,7 @@ export class Defang implements INodeType {
 		for (let itemIndex = 0; itemIndex < items.length; itemIndex++) {
 			const operation = this.getNodeParameter('operation', itemIndex, '') as string;
 			const propertyName = this.getNodeParameter('name', itemIndex, '') as string;
-			const value =  this.getNodeParameter('value', itemIndex, '') as string;
+			const value = this.getNodeParameter('value', itemIndex, '') as string;
 
 			item = items[itemIndex];
 
@@ -110,7 +104,7 @@ export class Defang implements INodeType {
 				newItem.binary = {};
 				Object.assign(newItem.binary, item.binary);
 			}
-		
+
 			try {
 				let output;
 				if (operation === 'defang') {
@@ -123,7 +117,7 @@ export class Defang implements INodeType {
 				// This node should never fail but we want to showcase how
 				// to handle errors.
 				if (this.continueOnFail()) {
-					returnData.push({json: this.getInputData(itemIndex)[0].json, error});
+					returnData.push({ json: this.getInputData(itemIndex)[0].json, error });
 					continue;
 				} else {
 					// Adding `itemIndex` allows other workflows to handle this error

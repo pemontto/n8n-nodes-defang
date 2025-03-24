@@ -4,5 +4,7 @@ node_modules
 tmp
 dist
 npm-debug.log*
+package-lock.json
+pnpm-lock.yaml
 yarn.lock
 .vscode/launch.json

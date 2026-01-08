@@ -2,55 +2,34 @@
   "name": "n8n-nodes-defang",
   "version": "0.1.1",
   "description": "Node to defang and refang IoCs",
-  "keywords": [
-    "n8n-community-node-package",
-    "threat intelligence"
-  ],
+  "keywords": ["n8n-community-node-package", "threat intelligence"],
   "license": "MIT",
   "homepage": "https://github.com/pemontto/n8n-nodes-defang",
-  "author": {
-    "name": "pemontto",
-    "email": "pemontto@gmail.com"
-  },
+  "author": { "name": "pemontto", "email": "pemontto@gmail.com" },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pemontto/n8n-nodes-defang.git"
   },
-  "packageManager": "pnpm@9.1.4",
-  "main": "index.js",
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
-    "build": "tsc && gulp build:icons",
-    "dev": "tsc --watch",
-    "format": "prettier nodes --write",
-    "lint": "eslint nodes package.json",
-    "lintfix": "eslint nodes package.json --fix",
-    "prepublishOnly": "pnpm build && pnpm lint -c .eslintrc.prepublish.js nodes package.json"
+    "build": "n8n-node build",
+    "dev": "n8n-node dev",
+    "lint": "n8n-node lint",
+    "lint:fix": "n8n-node lint --fix",
+    "release": "n8n-node release",
+    "prepublishOnly": "n8n-node prerelease"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "n8n": {
     "n8nNodesApiVersion": 1,
+    "strict": false,
     "credentials": [],
-    "nodes": [
-      "dist/nodes/Defang/Defang.node.js"
-    ]
+    "nodes": ["dist/nodes/Defang/Defang.node.js"]
   },
+  "dependencies": { "fanger": "^0.3.1", "lodash": "^4.17.21" },
   "devDependencies": {
-    "@typescript-eslint/parser": "~8.27",
-    "eslint-plugin-n8n-nodes-base": "^1.16.3",
-    "gulp": "^5.0.0",
-    "n8n-workflow": "*",
-    "prettier": "^3.5.3",
-    "typescript": "~5.8.2"
+    "@n8n/node-cli": "*",
+    "@types/lodash": "^4.17.21",
+    "typescript": "^5.9.3"
   },
-  "peerDependencies": {
-    "n8n-workflow": "*"
-  },
-  "dependencies": {
-    "@types/lodash": "^4.17.16",
-    "fanger": "^0.3.1",
-    "lodash": "^4.17.21"
-  }
+  "peerDependencies": { "n8n-workflow": "*" }
 }

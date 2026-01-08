@@ -1,10 +1,10 @@
 import {
-	IExecuteFunctions,
-	INodeExecutionData,
-	INodeType,
-	INodeTypeDescription,
-	NodeConnectionType,
+	NodeConnectionTypes,
 	NodeOperationError,
+	type IExecuteFunctions,
+	type INodeExecutionData,
+	type INodeType,
+	type INodeTypeDescription,
 } from 'n8n-workflow';
 
 import { defang, refang } from 'fanger';
@@ -15,16 +15,17 @@ export class Defang implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Defang',
 		name: 'defang',
-		icon: 'file:fang-mouth.svg',
+		icon: 'file:../../icons/defang.svg',
 		group: ['transform'],
 		version: 1,
+		usableAsTool: true,
 		subtitle: '={{$parameter["operation"]}}',
 		description: 'Defang and Refang IoCs',
 		defaults: {
 			name: 'Defang',
 		},
-		inputs: [NodeConnectionType.Main],
-		outputs: [NodeConnectionType.Main],
+		inputs: [NodeConnectionTypes.Main],
+		outputs: [NodeConnectionTypes.Main],
 		credentials: [],
 		properties: [
 			{

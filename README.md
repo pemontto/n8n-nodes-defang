@@ -1,3 +1,5 @@
+<img src="https://raw.githubusercontent.com/pemontto/n8n-nodes-defang/main/icons/defang.svg" width="120" alt="Defang Logo" />
+
 # n8n-nodes-defang
 
 ![](https://raw.githubusercontent.com/pemontto/n8n-nodes-defang/main/images/workflow.png)

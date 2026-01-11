@@ -32,18 +32,22 @@ export class Defang implements INodeType {
 				displayName: 'Operation',
 				name: 'operation',
 				type: 'options',
+				noDataExpression: true,
 				options: [
 					{
 						name: 'Defang',
 						value: 'defang',
+						action: 'Defang a URL or IP address',
+						description: 'Make URLs and IPs safe for sharing by replacing dangerous characters',
 					},
 					{
 						name: 'Refang',
 						value: 'refang',
+						action: 'Refang a URL or IP address',
+						description: 'Restore defanged URLs and IPs to their original form',
 					},
 				],
 				default: 'defang',
-				noDataExpression: true,
 			},
 			{
 				displayName: 'Value',
